@@ -1,0 +1,15 @@
+class { 'indigo_iam':
+  iam_db_host                    => 'localhost',
+  iam_db_schema                  => 'iam_login_service',
+  iam_db_username                => 'iam',
+  iam_db_password                => 'iam_login_service',
+  active_profiles                => 'prod,registration',
+  iam_notification_disable       => false,
+  iam_notification_from          => 'user@localhost',
+  iam_notification_admin_address => 'user@localhost',
+  iam_mail_host                  => 'localhost',
+  generate_keystore              => true,
+  iam_key_store_location         => '/var/lib/indigo/iam-login-service/keystore.jks',
+  iam_repo_branch                => 'nightly',
+  iam_version                    => 'latest',
+}
