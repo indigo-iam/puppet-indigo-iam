@@ -1,16 +1,33 @@
 # indigo_iam-mw-devel
 
+## Requirements
+Install and configure a database server. Then create a schema for IAM with a dedicated username and password.
+Take note of the database hostname, schema, username and password: they will used later in Puppet manifest.
+
+Puppet version >= 4.10.
+
+## Preliminary operations
+Relax SELinux, setting `permissive` in `/etc/sysconfig/selinux` and rebooting the machine.
+
+Install Puppet repo and package:
+```console
+$ sudo yum install -y https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+$ sudo yum install -y redhat-lsb puppet
+```
+
 ## Usage 
-Install Puppet dependency:
+Install Puppet dependencies:
 
 ```console
 $ sudo puppet module install puppetlabs-stdlib
+$ sudo puppet module install maestrodev-wget
+$ sudo puppet module install puppet-nginx
 ```
 
 Write a manifest with essential parameters, following the example provided in the `example` directory.
 Then apply it:
 ```console
-$ sudo puppet apply --modulepath=/etc/puppet/modules/:/mnt/workspace/indigo-iam/ /mnt/workspace/indigo-iam/indigo_iam/examples/init.pp --debug
+$ sudo puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules/:/mnt/workspace/puppet-indigo-iam/ /mnt/workspace/puppet-indigo-iam/indigo_iam/examples/iam_with_nginx.pp --debug
 ```
 
 ## Deployment Tips
@@ -25,7 +42,7 @@ If the obtained value is less than 1000, then `haveged` daemon is mandatory.
 
 On CentOS only, install EPEL repository:
 ```console
-$ sudo yum install epel-release
+$ sudo yum install -y epel-release
 ```
  Install Haveged:
 ```console
