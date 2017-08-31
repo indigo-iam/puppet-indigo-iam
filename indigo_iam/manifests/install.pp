@@ -3,6 +3,8 @@ class indigo_iam::install (
   $iam_repo_branch = $indigo_iam::params::iam_repo_branch,) inherits indigo_iam::params {
   #
 
+  $iam_pkg_version = $iam_version
+
   if !($iam_version in ['present', 'latest', 'absent']) {
     $iam_pkg_version = $::operatingsystem ? {
       /CentOS/ => "${iam_version}.el7.centos",

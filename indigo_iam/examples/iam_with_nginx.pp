@@ -1,6 +1,9 @@
+$server   = 'cloud-vm194.cloud.cnaf.infn.it'
+$base_url = "https://${server}"
+
 class { 'indigo_iam':
-  iam_base_url                   => 'https://cloud-vm194.cloud.cnaf.infn.it',
-  iam_issuer                     => 'https://cloud-vm194.cloud.cnaf.infn.it/',
+  iam_base_url                   => $base_url,
+  iam_issuer                     => "${base_url}/",
   iam_db_host                    => 'localhost',
   iam_db_schema                  => 'iam_login_service',
   iam_db_username                => 'iam',
@@ -18,7 +21,7 @@ class { 'nginx': }
 
 nginx::resource::upstream { 'iam_login_service': members => ['127.0.0.1:8080',], }
 
-nginx::resource::server { 'cloud-vm194.cloud.cnaf.infn.it':
+nginx::resource::server { $server:
   ensure       => present,
   listen_port  => 443,
   proxy        => 'http://iam_login_service',
@@ -26,7 +29,7 @@ nginx::resource::server { 'cloud-vm194.cloud.cnaf.infn.it':
   ssl_cert     => '/etc/pki/hostcert.pem',
   ssl_key      => '/etc/pki/hostkey.pem',
   ssl_redirect => true,
-  spdy         => 'on',
+  #  spdy         => 'on',
   http2        => 'on',
 }
 

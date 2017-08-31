@@ -1,6 +1,6 @@
 class indigo_iam::params {
   # General
-  $iam_version     = '0.6.0-1'
+  $iam_version     = 'latest'
   $iam_repo_branch = 'stable' # Values: nightly, beta, stable
 
   $iam_user        = 'iam'
