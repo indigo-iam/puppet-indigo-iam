@@ -31,7 +31,7 @@ class indigo_iam::params {
 
   # Conf variables
   $active_profiles                = 'prod,registration'
-  $java_opts                      = undef
+  $java_opts                      = '-Xms512m -Xmx1024m'
   $iam_base_url                   = 'https://iam.example.org'
   $iam_issuer                     = "${iam_base_url}/"
   $iam_use_forwarded_headers      = true
