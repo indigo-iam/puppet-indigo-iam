@@ -10,6 +10,6 @@ class { 'indigo_iam':
   iam_mail_host                  => 'localhost',
   generate_keystore              => true,
   iam_key_store_location         => '/var/lib/indigo/iam-login-service/keystore.jks',
-  iam_repo_branch                => 'nightly',
+  iam_repo_branch                => 'stable',
   iam_version                    => 'latest',
 }

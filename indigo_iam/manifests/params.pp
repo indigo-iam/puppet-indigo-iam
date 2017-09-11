@@ -50,7 +50,7 @@ class indigo_iam::params {
   $iam_notification_from          = undef
   $iam_notification_task_delay    = 5000
   $iam_notification_admin_address = undef
-  $iam_mail_host                  = undef
+  $iam_mail_host                  = 'localhost'
 
   # Google settings
   $iam_google_client_id           = undef

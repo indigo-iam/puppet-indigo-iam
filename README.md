@@ -4,15 +4,27 @@
 Install and configure a database server. Then create a schema for IAM with a dedicated username and password.
 Take note of the database hostname, schema, username and password: they will used later in Puppet manifest.
 
-Puppet version >= 4.10.
+This module require Puppet version >= 4.10.
+
+Platform supported:
+- CentOS 7
+- Ubuntu 16.04
 
 ## Preliminary operations
 Relax SELinux, setting `permissive` in `/etc/sysconfig/selinux` and rebooting the machine.
 
-Install Puppet repo and package:
+Install Puppet 4 repository and package.
+On Centos:
 ```console
 $ sudo yum install -y https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 $ sudo yum install -y redhat-lsb puppet
+```
+
+On Ubuntu:
+```console
+$ wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+$ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+$ sudo apt-get install puppet-agent
 ```
 
 ## Usage 
@@ -24,7 +36,10 @@ $ sudo puppet module install maestrodev-wget
 $ sudo puppet module install puppet-nginx
 ```
 
-Write a manifest with essential parameters, following the example provided in the `example` directory.
+Write a manifest with essential parameters, following the examples provided in the `example` directory.
+
+More configuration snippets can also be found [here](indigo-iam/README.md).
+
 Then apply it:
 ```console
 $ sudo puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules/:/mnt/workspace/puppet-indigo-iam/ /mnt/workspace/puppet-indigo-iam/indigo_iam/examples/iam_with_nginx.pp --debug
