@@ -27,7 +27,7 @@ $ sudo dpkg -i puppetlabs-release-pc1-xenial.deb
 $ sudo apt-get install puppet-agent
 ```
 
-## Usage 
+## Usage
 Install Puppet dependencies:
 
 ```console
@@ -38,7 +38,7 @@ $ sudo puppet module install puppet-nginx
 
 Write a manifest with essential parameters, following the examples provided in the `example` directory.
 
-More configuration snippets can also be found [here](indigo-iam/README.md).
+More configuration snippets can also be found [here](indigo_iam/README.md).
 
 Then apply it:
 ```console

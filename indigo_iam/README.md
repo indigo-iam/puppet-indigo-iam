@@ -13,7 +13,7 @@ class { 'indigo_iam':
 
 ### Automatically generate the keystore
 ```puppet
-class { 'indigo-iam':
+class { 'indigo_iam':
   ...
   generate_keystore              => true,
   iam_key_store_location         => '/var/lib/indigo/iam-login-service/keystore.jks',
@@ -23,7 +23,7 @@ class { 'indigo-iam':
 
 ### Activate and setup the notification service
 ```puppet
-class { 'indigo-iam':
+class { 'indigo_iam':
   ...
   iam_notification_disable       => false,
   iam_notification_from          => 'iam@iam-server.org',
@@ -35,7 +35,7 @@ class { 'indigo-iam':
 
 ### Activate and setup Google external IDP
 ```puppet
-class { 'indigo-iam':
+class { 'indigo_iam':
   active_profiles                => 'prod,registration,google',
   ...
   iam_google_client_id           => 'google_client_id'
@@ -47,7 +47,7 @@ class { 'indigo-iam':
 
 ### Activate and setup SAML external IDP
 ```puppet
-class { 'indigo-iam':
+class { 'indigo_iam':
   active_profiles                => 'prod,registration,saml',
   ...
   iam_saml_entity_id             => 'https://iam-server.example.org'
