@@ -1,7 +1,7 @@
 {
-  "name": "indigodc-indigo_iam",
+  "name": "cnaf-indigo_iam",
   "version": "0.1.0",
-  "author": "indigodc",
+  "author": "cnaf",
   "summary": "Indigo IAM Login Service Puppet module",
   "license": "Apache-2.0",
   "source": "https://github.com/indigo-iam/puppet-indigo-iam",

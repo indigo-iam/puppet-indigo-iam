@@ -1,4 +1,4 @@
 .project
 .scannerwork/
-sonar-project.properties
 *.md.html
+pkg/
