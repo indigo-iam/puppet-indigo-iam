@@ -10,20 +10,24 @@ pipeline {
 
   stages {
     stage('analysis'){ 
-      when{
-        not {
+      when {
           environment name: 'CHANGE_URL', value: ''
-        }
       }
       steps {
-        sh 'sonar-scanner'
+        script {
+          withSonarQubeEnv{
+            def sonar_opts="-Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_AUTH_TOKEN}"
+            sh "/opt/sonar-scanner/bin/sonar-scanner ${sonar_opts}"
+          }
+        }
       }
     }
 
     stage('build') {
       steps {
-        dir('indigo_iam')
-        sh '/opt/puppetlabs/bin/puppet module build'
+        dir('indigo_iam'){
+          sh '/opt/puppetlabs/bin/puppet module build'
+        }
       }
     }
 
